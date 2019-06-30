@@ -40,6 +40,7 @@ class MainMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         hello.text = "Olá " + SignUpApplication.getUserName() + " !"
 
         edit_text_route.setOnFocusChangeListener { v, hasFocus -> startActivity(Intent(this, MapsActivity::class.java)) }
+        edit_text_route.setOnClickListener { v -> startActivity(Intent(this, MapsActivity::class.java)) }
     }
 
     /**

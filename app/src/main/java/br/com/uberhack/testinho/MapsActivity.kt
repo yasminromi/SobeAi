@@ -63,6 +63,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
 
                 AlertDialog.Builder(this@MapsActivity)
                     .setView(layoutInflater.inflate(R.layout.driver_found, null))
+                    .setCancelable(false)
                     .setPositiveButton("OK") { _, _ ->
                         startActivityForResult(Intent(this@MapsActivity, ItineraryActivity::class.java), RESULT_RETURN)
                     }
@@ -85,21 +86,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
                     searchingDriverTextView.visibility = View.GONE
 
                     val view = layoutInflater.inflate(R.layout.biker_found, null)
-//                    view.contactBikerButton.setOnClickListener {
-//                        startActivity(
-//                            Intent(
-//                                Intent.ACTION_VIEW,
-//                                Uri.parse("whatsapp://send?text=Hello World!&phone=+5527996099682\">")
-//                            )
-//                        )
-//                    }
                     AlertDialog.Builder(this@MapsActivity)
                         .setView(view)
-                        .show()
+                        .setCancelable(false)
+                        .setPositiveButton("Fechar") { _, _ ->
+                            finish()
+                        }.show()
                 }
                 val smsManager = SmsManager.getDefault()
                 smsManager.sendTextMessage("+5527996099682", null, "Temos uma nova viagem para você!", null, null)
-                Handler().postDelayed(r, 1000)
+                Handler().postDelayed(r, 2000)
             }
         }
     }
