@@ -30,6 +30,9 @@ class MainMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        searchButton.setOnClickListener {
+            startActivity(Intent(this, MapsActivity::class.java))
+        }
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         val locationRequest = LocationRequest()
@@ -38,9 +41,6 @@ class MainMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationListener, Looper.myLooper())
 
         hello.text = "Olá " + SignUpApplication.getUserName() + " !"
-
-        edit_text_route.setOnFocusChangeListener { v, hasFocus -> startActivity(Intent(this, MapsActivity::class.java)) }
-        edit_text_route.setOnClickListener { v -> startActivity(Intent(this, MapsActivity::class.java)) }
     }
 
     /**

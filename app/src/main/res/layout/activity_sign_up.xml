@@ -29,7 +29,7 @@
             android:padding="5dp"
             android:layout_marginLeft="10dp"
             android:textColor="#fff"
-    />
+            android:text="Time 10"/>
 
     <TextView android:id="@+id/phone_text_view"
               android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
             android:padding="5dp"
             android:layout_marginLeft="10dp"
             android:textColor="#fff"
-    />
+            android:text="21 999999999"/>
 
     <Button android:id="@+id/button_sign_up"
             android:layout_width="wrap_content"
