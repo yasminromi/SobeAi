@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Integra</string>
+    <string name="uri_scheme">ussd</string>
+    <string name="uri_authority">cd</string>
+    <string name="uri_path">/</string>
+    <string name="uri_param_name">uval</string>
+    <string name="copy_access_token_to_clipboard">Copy Access Token to Clipboard</string>
+    <string name="clear_access_token">Clear Access Token</string>
+    <string name="refresh_estimates">Refresh Estimates</string>
+    <string name="deep_link">Deeplink with app install fallback</string>
+    <string name="mobile_web_fallback">Deeplink with mobile web fallback</string>
+    <string name="user_cancels_message">User cancels login</string>
+    <string name="login_error_message">Error occured during login: %s</string>
+    <string name="custom_login_text">I want to sign in using my Uber app.</string>
+    <string name="authorization_code_message">Received an authorization code:\n %s</string>
+    <string name="greeting">Hello %s!</string>
+</resources>
