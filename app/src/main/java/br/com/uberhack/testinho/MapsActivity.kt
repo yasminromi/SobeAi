@@ -130,10 +130,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
     }
 
     override fun onRoutingSuccess(route: MutableList<Route>, shortestRouteIndex: Int) {
-        lastLocation?.let {
-            moveCameraWithMyLocation(it)
-        }
-
         if (polylines.size > 0) {
             for (poly in polylines) {
                 poly.remove()
@@ -144,8 +140,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
         //add route(s) to the map.
         for (i in 0 until route.size) {
 
-            //In case of more than 5 alternative routes
-
             val polyOptions = PolylineOptions()
             polyOptions.color(resources.getColor(COLORS[i]))
             polyOptions.width((10 + i * 3).toFloat())
@@ -154,31 +148,39 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
             polylines.add(polyline)
         }
 
-        var options = MarkerOptions()
+        val markerStart = MarkerOptions()
         lastLocation?.let {
-            options.position(LatLng(it.latitude, it.longitude))
-            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
-            googleMap.addMarker(options)
+            markerStart.position(LatLng(it.latitude, it.longitude))
+            markerStart.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
+            googleMap.addMarker(markerStart)
             return@let
         }
 
-        options = MarkerOptions()
+        val markerWaypoint = MarkerOptions()
         lastLocation?.let {
-            options.position(LatLng(-22.9946962, -43.2346334))
-            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
-            googleMap.addMarker(options)
+            markerWaypoint.position(LatLng(-22.9946962, -43.2346334))
+            markerWaypoint.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
+            googleMap.addMarker(markerWaypoint)
             return@let
         }
-        options = MarkerOptions()
-        options.position(LatLng(-22.9953358, -43.2429147))
-        options.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
-        googleMap.addMarker(options)
+        val markerEnd = MarkerOptions()
+        markerEnd.position(LatLng(-22.9953358, -43.2429147))
+        markerEnd.icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
+        googleMap.addMarker(markerEnd)
 
+        val bounds = LatLngBounds.Builder().run {
+            include(markerStart.position)
+            include(markerWaypoint.position)
+            include(markerEnd.position)
+            build()
+        }
+        val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 20)
+        googleMap.animateCamera(cameraUpdate)
         val r = Runnable {
             progressBar.visibility = View.GONE
             overlay.visibility = View.GONE
         }
-        Handler().postDelayed(r, 2000)
+        Handler().postDelayed(r, 500)
     }
 
     override fun onRoutingCancelled() {
