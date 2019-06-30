@@ -18,19 +18,19 @@ android {
         buildConfigField "String", "SERVER_TOKEN", "\"${loadSecret("UBER_SERVER_TOKEN")}\""
     }
 
-//    signingConfigs {
-//        debugSignature {
-//            keyAlias "uberhack"
-//            keyPassword ""
-//            storeFile file("")
-//            storePassword ""
-//        }
-//    }
+    signingConfigs {
+        debugSignature {
+            keyAlias "uberhack"
+            keyPassword "uberhack19"
+            storeFile file("../signature/keystore.keystore")
+            storePassword "uberhack19"
+        }
+    }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debugSignature
         }
     }
 }
