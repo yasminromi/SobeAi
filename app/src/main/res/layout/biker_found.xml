@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp" android:src="@drawable/moto"
+            android:id="@+id/imageView4" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+            android:text="Wallacy Silva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4" app:layout_constraintStart_toStartOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="@+id/imageView4" android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+    <TextView
+            android:text="Honda CG150"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" app:layout_constraintStart_toStartOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="@+id/imageView4" android:textColor="@android:color/black"/>
+    <TextView
+            android:text="YHO-4034 - Vermelha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8" app:layout_constraintStart_toStartOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="@+id/imageView4" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" android:textColor="@android:color/black"/>
+    <TextView
+            android:text="Entre em contato com o motorista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/contactBikerButton"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView8"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp" android:textColor="#F26101"
+            android:textStyle="bold" android:textSize="18sp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

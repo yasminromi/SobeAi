@@ -1,7 +1,7 @@
 package br.com.uberhack.testinho
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_itinerary.*
 
 class ItineraryActivity : AppCompatActivity() {
@@ -10,7 +10,8 @@ class ItineraryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_itinerary)
         closeButton.setOnClickListener {
-
+            setResult(MapsActivity.RESULT_RETURN)
+            finish()
         }
     }
 }

@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.telephony.SmsManager
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_maps.*
+import kotlinx.android.synthetic.main.biker_found.view.*
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
@@ -62,8 +65,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
 
                 AlertDialog.Builder(this@MapsActivity)
                     .setView(layoutInflater.inflate(R.layout.driver_found, null))
-                    .setPositiveButton("OK") { _, i ->
-                        startActivity(Intent(this@MapsActivity, ItineraryActivity::class.java))
+                    .setPositiveButton("OK") { _, _ ->
+                        startActivityForResult(Intent(this@MapsActivity, ItineraryActivity::class.java), RESULT_RETURN)
                     }
                     .show()
             }
@@ -72,7 +75,38 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
 
     }
 
-    fun onAppChoose(v: View) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            RESULT_RETURN -> {
+                progressBar.visibility = View.VISIBLE
+                searchingDriverTextView.visibility = View.VISIBLE
+                searchingDriverTextView.text =
+                    "Você está quase chegando no seu ponto.\nEstamos rastreando suas opções de mototaxi."
+                val r = Runnable {
+                    progressBar.visibility = View.GONE
+                    searchingDriverTextView.visibility = View.GONE
+
+                    val view = layoutInflater.inflate(R.layout.biker_found, null)
+                    view.contactBikerButton.setOnClickListener {
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("whatsapp://send?text=Hello World!&phone=+5527996099682\">")
+                            )
+                        )
+                    }
+                    AlertDialog.Builder(this@MapsActivity)
+                        .setView(view)
+                        .show()
+                }
+                val smsManager = SmsManager.getDefault()
+                smsManager.sendTextMessage("+5527996099682", null, "Temos uma nova viagem para você!", null, null)
+                Handler().postDelayed(r, 1000)
+            }
+        }
+    }
+
+    private fun onAppChoose(v: View) {
         imageMobilityApp1.borderWidth = 0
         imageMobilityApp2.borderWidth = 0
         imageMobilityApp3.borderWidth = 0
@@ -195,5 +229,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
                 buildRoute(LatLng(it.latitude, it.longitude))
             }
         }
+    }
+
+    companion object {
+        const val RESULT_RETURN = 99
     }
 }
