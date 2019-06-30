@@ -21,7 +21,7 @@ class SignUpActivity : AppCompatActivity() {
             SignUpApplication.setUserName(name_edit.text.toString())
         }
 
-        startActivity(Intent(this@SignUpActivity, MainActivity::class.java))
+        startActivity(Intent(this@SignUpActivity, MainMapsActivity::class.java))
         finish()
     }
 }
