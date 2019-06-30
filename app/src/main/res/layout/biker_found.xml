@@ -35,14 +35,4 @@
             android:id="@+id/textView8" app:layout_constraintStart_toStartOf="@+id/imageView4"
             app:layout_constraintEnd_toEndOf="@+id/imageView4" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/textView7" android:textColor="@android:color/black"/>
-    <TextView
-            android:text="Entre em contato com o motorista"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/contactBikerButton"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView8"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp" android:textColor="#F26101"
-            android:textStyle="bold" android:textSize="18sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
