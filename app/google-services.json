@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "170631205562",
+    "firebase_url": "https://pos-android-9ae38.firebaseio.com",
+    "project_id": "pos-android-9ae38",
+    "storage_bucket": "pos-android-9ae38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170631205562:android:de04c4a8befc3381",
+        "android_client_info": {
+          "package_name": "br.com.stone.testinho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170631205562-87vbn4bimgrv0mdejp01gmt5msgcsbok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlp7lzSjd8_FUJwUKb-EInHGRE3L5Kcxk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
