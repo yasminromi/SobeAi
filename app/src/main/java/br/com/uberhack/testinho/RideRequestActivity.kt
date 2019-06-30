@@ -26,11 +26,11 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.uber.sdk.android.core.Deeplink
 import com.uber.sdk.android.core.auth.AccessTokenManager
 import com.uber.sdk.android.core.utils.Preconditions.checkNotNull
