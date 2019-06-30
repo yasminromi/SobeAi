@@ -1,6 +1,7 @@
 package br.com.uberhack.testinho
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
@@ -8,7 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.com.uberhack.testinho.route.*
 import com.google.android.gms.location.*
@@ -50,6 +51,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
         imageMobilityApp1.setOnClickListener(::onAppChoose)
         imageMobilityApp2.setOnClickListener(::onAppChoose)
         imageMobilityApp3.setOnClickListener(::onAppChoose)
+
+        confirmTripButton.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
+            overlay.visibility = View.VISIBLE
+            searchingDriverTextView.visibility = View.VISIBLE
+            val r = Runnable {
+                progressBar.visibility = View.GONE
+                searchingDriverTextView.visibility = View.GONE
+
+                AlertDialog.Builder(this@MapsActivity)
+                    .setView(layoutInflater.inflate(R.layout.driver_found, null))
+                    .setPositiveButton("OK") { _, i ->
+                        startActivity(Intent(this@MapsActivity, ItineraryActivity::class.java))
+                    }
+                    .show()
+            }
+            Handler().postDelayed(r, 1000)
+        }
+
     }
 
     fun onAppChoose(v: View) {
@@ -132,12 +152,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, RoutingListener {
             polyOptions.addAll(route[i].points)
             val polyline = googleMap.addPolyline(polyOptions)
             polylines.add(polyline)
-
-            Toast.makeText(
-                applicationContext,
-                "Route " + (i + 1) + ": distance - " + route[i].distanceValue + ": duration - " + route.get(i).durationValue,
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
         var options = MarkerOptions()
